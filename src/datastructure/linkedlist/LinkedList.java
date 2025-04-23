@@ -298,4 +298,17 @@ public class LinkedList {
             current = current.next;
         }
     }
+
+    // Binary To Decimal
+    public int binaryToDecimal() {
+        Node current = head;
+        int num = 0;
+
+        while (current != null) {
+            num = num * 2 + current.value;
+            current = current.next;
+        }
+
+        return num;
+    }
 }
