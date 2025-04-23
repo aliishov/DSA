@@ -290,7 +290,6 @@ public class LinkedList {
         while (current != null && current.next != null) {
             if (set.contains(current.value)) {
                 prev.next = current.next;
-                current.next = null;
             } else {
                 set.add(current.value);
                 prev = current;
