@@ -1,5 +1,8 @@
 package datastructure.linkedlist;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class LinkedList {
 
     class Node {
@@ -272,7 +275,28 @@ public class LinkedList {
         } else {
             head = smallerFirst;
             smallerLast.next = largerFirst;
+        }
+    }
 
+    // Remove duplicates
+    public void removeDuplicates() {
+        if (head == null) return;
+
+        Node current = head;
+        Node prev = null;
+
+        Set<Integer> set = new HashSet();
+
+        while (current != null && current.next != null) {
+            if (set.contains(current.value)) {
+                prev.next = current.next;
+                current.next = null;
+            } else {
+                set.add(current.value);
+                prev = current;
+            }
+
+            current = current.next;
         }
     }
 }
