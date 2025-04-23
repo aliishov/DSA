@@ -334,6 +334,7 @@ public class LinkedList {
         }
 
         head = dummyNode.next;
+
     }
 
 }
