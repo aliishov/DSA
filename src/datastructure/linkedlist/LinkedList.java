@@ -164,16 +164,16 @@ public class LinkedList {
         }
     }
 
-    public void getHead() {
-        System.out.println("Head " + head.value);
+    public Node getHead() {
+        return head;
     }
 
-    public void getTail() {
-        System.out.println("Tail " + tail.value);
+    public Node getTail() {
+        return tail;
     }
 
-    public void getLength() {
-        System.out.println("Length " + length);
+    public int getLength() {
+        return length;
     }
 
     public void printList() {
@@ -183,4 +183,21 @@ public class LinkedList {
             currentNode = currentNode.next;
         }
     }
+
+    // Find Middle Node
+    public Node findMiddleNode() {
+        if (head == null) return null;
+        if (head == tail) return head;
+
+        Node slow = head;
+        Node fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        return slow;
+    }
+
 }
