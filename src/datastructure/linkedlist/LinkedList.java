@@ -231,4 +231,48 @@ public class LinkedList {
 
         return slow;
     }
+
+    // Partition List
+    public void partitionList(int x) {
+        if (head == null) return;
+
+        Node temp = head;
+        Node largerFirst = null;
+        Node largerLast = null;
+
+        Node smallerLast = null;
+        Node smallerFirst = null;
+
+        while (temp != null) {
+            Node newNode = temp.next;
+            temp.next = null;
+
+            if (temp.value < x) {
+                if (smallerFirst == null) {
+                    smallerFirst = temp;
+                    smallerLast = temp;
+                } else {
+                    smallerLast.next = temp;
+                    smallerLast = smallerLast.next;
+                }
+            } else {
+                if (largerFirst == null) {
+                    largerFirst = temp;
+                    largerLast = temp;
+                } else {
+                    largerLast.next = temp;
+                    largerLast = largerLast.next;
+                }
+            }
+            temp = newNode;
+        }
+
+        if (smallerFirst == null) {
+            head = largerFirst;
+        } else {
+            head = smallerFirst;
+            smallerLast.next = largerFirst;
+
+        }
+    }
 }
