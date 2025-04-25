@@ -173,4 +173,45 @@ public class DoublyLinkedList {
         tail.value = temp;
     }
 
+    // Reverse v1
+    public void reverse() {
+        if (length < 2) return;
+
+        Node temp = head;
+
+        Node after;
+        Node before = null;
+
+        for (int i = 0; i < length; i++) {
+            after = temp.next;
+            temp.next = before;
+            temp.prev = after;
+            before = temp;
+            temp = after;
+        }
+
+        temp = head;
+        head = tail;
+        tail = temp;
+    }
+
+    // Reverse v2
+    public void reverseV2() {
+        if (length < 2) return;
+
+        Node current = head;
+        Node temp;
+
+        while (current != null) {
+            temp = current.prev;
+            current.prev = current.next;
+            current.next = temp;
+            current = current.prev;
+        }
+
+        temp = head;
+        head = tail;
+        tail = temp;
+    }
+
 }
