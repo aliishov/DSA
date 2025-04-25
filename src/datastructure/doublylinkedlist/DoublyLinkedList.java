@@ -214,4 +214,19 @@ public class DoublyLinkedList {
         tail = temp;
     }
 
+    // Palindrome Checker
+    public boolean isPalindrome() {
+        if (length < 2) return true;
+
+        Node left = head;
+        Node right = tail;
+
+        for (int i = 0; i < length / 2; i++) {
+            if (left.value != right.value) return false;
+            left = left.next;
+            right = right.prev;
+        }
+
+        return true;
+    }
 }
