@@ -22,10 +22,24 @@ public class Main {
         return reversed;
     }
 
+    // Parentheses Balanced
+    public static boolean isBalancedParentheses(String s) {
+        Stack2<Character> stack = new Stack2<>();
+
+        for (char c : s.toCharArray()) {
+            if (c == ')') {
+                if (stack.isEmpty() || stack.peek() != '(') return false;
+                stack.pop();
+            } else if (c == '(') {
+                stack.push(c);
+            }
+        }
+        return stack.isEmpty();
+    }
+
     public static void main(String[] args) {
-        String myString = "hello";
-        String reversedString = reverseString(myString);
-        System.out.println(reversedString);
+        String myString = "(()(())(()))";
+        System.out.println(isBalancedParentheses(myString));
 
     }
 }
