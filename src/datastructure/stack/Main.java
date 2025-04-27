@@ -37,9 +37,38 @@ public class Main {
         return stack.isEmpty();
     }
 
-    public static void main(String[] args) {
-        String myString = "(()(())(()))";
-        System.out.println(isBalancedParentheses(myString));
+    // Sort stack
+    public static void sortStack(Stack2<Integer> stack) {
+        Stack2<Integer> result = new Stack2<>();
 
+        while (!stack.isEmpty()) {
+            int temp = stack.pop();
+
+            while (!result.isEmpty() && temp < result.peek()) {
+                stack.push(result.pop());
+            }
+
+            result.push(temp);
+        }
+
+        while (!result.isEmpty()) {
+            stack.push(result.pop());
+        }
+    }
+
+    public static void main(String[] args) {
+        Stack2<Integer> stack = new Stack2<>();
+        stack.push(3);
+        stack.push(1);
+        stack.push(4);
+        stack.push(2);
+
+        System.out.println("Before sorting:");
+        stack.printStack();
+
+        sortStack(stack);
+
+        System.out.println("\nAfter sorting:");
+        stack.printStack();
     }
 }
