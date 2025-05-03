@@ -141,4 +141,15 @@ public class Main {
     public static List<Integer> removeDuplicates2(List<Integer> nums) {
         return new ArrayList<>(new HashSet<>(nums));
     }
+
+    // Has Unique Chars
+    public static boolean hasUniqueChars(String str) {
+        Set<Character> mySet = new HashSet<>();
+
+        for (char c : str.toCharArray())
+            if (!mySet.add(c))
+                return false;
+
+        return true;
+    }
 }
