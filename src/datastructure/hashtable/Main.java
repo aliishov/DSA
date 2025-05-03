@@ -108,4 +108,21 @@ public class Main {
         }
         return new int[]{};
     }
+
+    // Subarray Sum
+    public static int[] subarraySum(int[] nums, int k) {
+        Map<Integer, Integer> numMap = new HashMap<>();
+        numMap.put(0, -1);
+
+        int prefixSum = 0;
+        for (int i = 0; i < nums.length; i++) {
+            prefixSum += nums[i];
+
+            if (numMap.containsKey(prefixSum - k)) {
+                return new int[]{numMap.get(prefixSum - k) + 1, i};
+            }
+            numMap.putIfAbsent(prefixSum, i);
+        }
+        return new int[]{};
+    }
 }
