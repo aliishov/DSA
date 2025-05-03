@@ -152,4 +152,21 @@ public class Main {
 
         return true;
     }
+
+    // Find Pairs
+    public static List<int[]> findPairs(int[] arr1, int[] arr2, int target) {
+        List<int[]> res = new ArrayList<>();
+        Set<Integer> mySet = new HashSet<>();
+
+        for (int i : arr1) {
+            mySet.add(i);
+        }
+
+        for (int i : arr2) {
+            if (mySet.contains(target - i)) {
+                res.add(new int[]{target - i, i});
+            }
+        }
+        return res;
+    }
 }
