@@ -82,4 +82,30 @@ public class Main {
         }
         return new ArrayList<>(res.values());
     }
+
+    // Two Sum O(n^2)
+    public static int[] twoSum1(int[] nums, int target) {
+        for (int i = 0; i < nums.length - 1; i++)
+            for (int j = i + 1; j < nums.length; j++)
+                if (nums[i] + nums[j] == target)
+                    return new int[]{i, j};
+
+        return new int[0];
+    }
+
+    // Two Sum O(n)
+    public static int[] twoSum2(int[] nums, int target) {
+        Map<Integer, Integer> numMap = new HashMap<>();
+
+        for (int i = 0; i < nums.length; i++) {
+            int num = nums[i];
+            int complement = target - num;
+
+            if (numMap.containsKey(complement)) {
+                return new int[]{numMap.get(complement), i};
+            }
+            numMap.put(num, i);
+        }
+        return new int[]{};
+    }
 }
