@@ -125,4 +125,20 @@ public class Main {
         }
         return new int[]{};
     }
+
+    // Remove Duplicates 1
+    public static List<Integer> removeDuplicates1(List<Integer> nums) {
+        List<Integer> res = new ArrayList<>();
+
+        for (int i : nums)
+            if (!res.contains(i))
+                res.add(i);
+
+        return res;
+    }
+
+    // Remove Duplicates 2
+    public static List<Integer> removeDuplicates2(List<Integer> nums) {
+        return new ArrayList<>(new HashSet<>(nums));
+    }
 }
