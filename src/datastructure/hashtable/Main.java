@@ -50,4 +50,19 @@ public class Main {
 
         return duplicates;
     }
+
+    // First Non-Repeating Character
+    public static Character firstNonRepeatingChar(String str) {
+        HashMap<Character, Integer> myHashMap = new HashMap<>();
+
+        for (char c : str.toCharArray()) {
+            myHashMap.merge(c, 1, Integer::sum);
+        }
+
+        for (char c : str.toCharArray()) {
+            if (myHashMap.get(c) == 1) return c;
+        }
+
+        return null;
+    }
 }
