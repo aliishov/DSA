@@ -169,4 +169,60 @@ public class Main {
         }
         return res;
     }
+
+    // Longest Consecutive Sequence 1
+    public int longestConsecutive1(int[] nums) {
+        if (nums.length == 0)
+            return 0;
+
+        Set<Integer> set = new TreeSet<>();
+        for (int num : nums) {
+            set.add(num);
+        }
+
+        List<Integer> numbers = new ArrayList<>(set);
+
+        int maxSequenceLength = 1;
+        int currentSequenceLength = 1;
+
+        for (int i = 1; i < numbers.size(); i++) {
+            int currentNum = numbers.get(i);
+            if (numbers.get(i - 1) + 1 == currentNum) {
+                currentSequenceLength++;
+            } else {
+                maxSequenceLength = Math.max(maxSequenceLength, currentSequenceLength);
+                currentSequenceLength = 1;
+            }
+        }
+
+        maxSequenceLength = Math.max(maxSequenceLength, currentSequenceLength);
+
+        return maxSequenceLength;
+    }
+
+    // Longest Consecutive Sequence 2
+    public int longestConsecutive2(int[] nums) {
+        if (nums.length == 0)
+            return 0;
+
+        Set<Integer> numSet = new HashSet<>();
+        for (int num : nums) {
+            numSet.add(num);
+        }
+
+        int longestSequence = 0;
+        for (int num : numSet) {
+            if (!numSet.contains(num - 1)) {
+                int currentSequence = 1;
+                int currentNum = num;
+                while (numSet.contains(currentNum + 1)) {
+                    currentSequence++;
+                    currentNum++;
+                }
+                longestSequence = Math.max(longestSequence, currentSequence);
+            }
+        }
+
+        return longestSequence;
+    }
 }
