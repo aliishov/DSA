@@ -1,6 +1,6 @@
 package datastructure.hashtable;
 
-import java.util.HashMap;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -19,5 +19,35 @@ public class Main {
             if (myHashMap.get(j) != null) return true;
         }
         return false;
+    }
+
+    // Find Duplicates 1
+    public static List<Integer> findDuplicates1(int[] array) {
+        HashMap<Integer, Integer> myHashMap = new HashMap<>();
+
+        for (int i : array) {
+            myHashMap.merge(i, 1, Integer::sum);
+        }
+
+        List<Integer> duplicates = new ArrayList<>();
+
+        for (int i : myHashMap.keySet()) {
+            if (myHashMap.get(i) > 1) duplicates.add(i);
+        }
+
+        return duplicates;
+    }
+
+    // Find Duplicates 2
+    public static List<Integer> findDuplicates2(int[] array) {
+        Set<Integer> uniqueNumbers = new HashSet<>();
+        List<Integer> duplicates = new ArrayList<>();
+
+        for (int i : array)
+            if (!uniqueNumbers.add(i))
+                if (!duplicates.contains(i))
+                    duplicates.add(i);
+
+        return duplicates;
     }
 }
