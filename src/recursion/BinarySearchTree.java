@@ -1,9 +1,6 @@
 package recursion;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 public class BinarySearchTree {
     class Node {
@@ -193,5 +190,24 @@ public class BinarySearchTree {
         }
 
         return true;
+    }
+
+    // Kth Smallest Node
+    public Integer kthSmallest(int k) {
+        Stack<Node> stack = new Stack<>();
+        Node currentNode = root;
+
+        while (currentNode != null || !stack.isEmpty()) {
+            while (currentNode != null) {
+                stack.push(currentNode);
+                currentNode = currentNode.left;
+            }
+
+            currentNode = stack.pop();
+            if (--k == 0) return currentNode.value;
+            currentNode = currentNode.right;
+        }
+
+        return null;
     }
 }
