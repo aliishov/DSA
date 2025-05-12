@@ -183,4 +183,15 @@ public class BinarySearchTree {
         new Traverse(root);
         return results;
     }
+
+    // Validate BST
+    public boolean isValidBST() {
+        ArrayList<Integer> dfs = DFSInOrder();
+
+        for (int i = 1; i < dfs.size(); i++) {
+            if (dfs.get(i) <= dfs.get(i - 1)) return false;
+        }
+
+        return true;
+    }
 }
