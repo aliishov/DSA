@@ -41,6 +41,19 @@ public class Main {
         return new int[] {max, min};
     }
 
+    // Find Longest String
+    public static String findLongestString(String[] stringList) {
+        String longestString = "";
+
+        for (String s : stringList) {
+            if (s.length() > longestString.length()) {
+                longestString = s;
+            }
+        }
+
+        return longestString;
+    }
+
     public static void main(String[] args) {
 
         // removeElement Test case
@@ -49,11 +62,16 @@ public class Main {
         int newLength1 = removeElement(nums1, val1);
         System.out.println("Test case 1: Modified array: " +
                 Arrays.toString(Arrays.copyOfRange(nums1, 0, newLength1)) +
-                "\nNew length: " + newLength1);
+                "\nNew length: " + newLength1 + "\n");
 
         // findMaxMin Test case
         int[] myList1 = {5, 3, 8, 1, 6, 9};
         int[] result1 = findMaxMin(myList1);
-        System.out.println("Test case 1: MaxMin: " + Arrays.toString(result1)); // prints "[9, 1]"
+        System.out.println("Test case 1: MaxMin: " + Arrays.toString(result1) + "\n"); // prints "[9, 1]"
+
+        // findLongestString Test case
+        String[] stringList1 = {"apple", "banana", "kiwi", "pear"};
+        String longest1 = findLongestString(stringList1);
+        System.out.println("Test case 1: Longest string: " + longest1 + "\n");  // prints "banana"
     }
 }
