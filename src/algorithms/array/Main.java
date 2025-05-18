@@ -83,6 +83,24 @@ public class Main {
         return i + 1;
     }
 
+    // Find Max Profit
+    public static int maxProfit(int[] prices) {
+        if (prices == null || prices.length < 2) return 0;
+
+        int minPrice = prices[0];
+        int maxProfit = 0;
+
+        for (int i = 1; i < prices.length; i++) {
+            int profit = prices[i] - minPrice;
+            maxProfit = Math.max(maxProfit, profit);
+            if (profit < minPrice) {
+                minPrice = prices[i];
+            }
+        }
+
+        return maxProfit;
+    }
+
     public static void main(String[] args) {
 
         // removeElement Test case
@@ -115,6 +133,11 @@ public class Main {
         int[] nums2 = {0, 0, 1, 1, 1, 2, 2, 3, 3, 4};
         int newLength2 = removeDuplicates(nums2);
         System.out.println("Test case 1: New length: " + newLength2);
-        System.out.println("Test case 1: Unique values in list: " + Arrays.toString(Arrays.copyOfRange(nums2, 0, newLength2)));
+        System.out.println("Test case 1: Unique values in list: " + Arrays.toString(Arrays.copyOfRange(nums2, 0, newLength2)) + "\n");
+
+        // maxProfit Test case
+        int[] prices1 = {7, 1, 5, 3, 6, 4};
+        int profit1 = maxProfit(prices1);
+        System.out.println("Test case 1: Maximum profit: " + profit1);
     }
 }
