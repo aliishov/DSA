@@ -3,8 +3,8 @@ package algorithms.array;
 import java.util.Arrays;
 
 public class Main {
-    // Remove Element
-    public static int removeElement(int[] nums, int val) {
+    // Remove Element 1
+    public static int removeElement1(int[] nums, int val) {
         for (int i = 0; i < nums.length; i++) {
             if (nums[i] == val) {
                 for (int j = i; j < nums.length-1; j++) {
@@ -22,6 +22,20 @@ public class Main {
         }
 
         return k + 1;
+    }
+
+    // Remove Element 2
+    public static int removeElement2(int[] nums, int val) {
+        int k = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != val) {
+                nums[k] = nums[i];
+                k++;
+            }
+        }
+
+        return k;
     }
 
     // Find Max Min
@@ -74,10 +88,18 @@ public class Main {
         // removeElement Test case
         int[] nums1 = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
         int val1 = 1;
-        int newLength1 = removeElement(nums1, val1);
+        int newLength1 = removeElement1(nums1, val1);
         System.out.println("Test case 1: Modified array: " +
                 Arrays.toString(Arrays.copyOfRange(nums1, 0, newLength1)) +
                 "\nNew length: " + newLength1 + "\n");
+
+        // removeElement Test case
+        int[] nums3 = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
+        int val3 = 1;
+        int newLength3 = removeElement1(nums3, val3);
+        System.out.println("Test case 1: Modified array: " +
+                Arrays.toString(Arrays.copyOfRange(nums3, 0, newLength3)) +
+                "\nNew length: " + newLength3 + "\n");
 
         // findMaxMin Test case
         int[] myList1 = {5, 3, 8, 1, 6, 9};
