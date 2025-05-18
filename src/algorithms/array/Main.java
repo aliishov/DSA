@@ -54,6 +54,21 @@ public class Main {
         return longestString;
     }
 
+    // Remove Duplicates
+    public static int removeDuplicates(int[] nums) {
+        if (nums.length == 0) return 0;
+
+        int i = 0;
+        for (int j = 1; j < nums.length; j++) {
+            if (nums[j] != nums[i]) {
+                i++;
+                nums[i] = nums[j];
+            }
+        }
+
+        return i + 1;
+    }
+
     public static void main(String[] args) {
 
         // removeElement Test case
@@ -73,5 +88,11 @@ public class Main {
         String[] stringList1 = {"apple", "banana", "kiwi", "pear"};
         String longest1 = findLongestString(stringList1);
         System.out.println("Test case 1: Longest string: " + longest1 + "\n");  // prints "banana"
+
+        // removeDuplicates Test case
+        int[] nums2 = {0, 0, 1, 1, 1, 2, 2, 3, 3, 4};
+        int newLength2 = removeDuplicates(nums2);
+        System.out.println("Test case 1: New length: " + newLength2);
+        System.out.println("Test case 1: Unique values in list: " + Arrays.toString(Arrays.copyOfRange(nums2, 0, newLength2)));
     }
 }
