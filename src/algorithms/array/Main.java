@@ -121,6 +121,21 @@ public class Main {
         }
     }
 
+    // Max Sub Array
+    public static int maxSubarray(int[] nums) {
+        if (nums == null || nums.length == 0) return 0;
+
+        int currentSum = nums[0];
+        int maxSum = nums[0];
+
+        for (int i = 1; i < nums.length; i++) {
+            currentSum = Math.max(nums[i], currentSum + nums[i]);
+            maxSum = Math.max(maxSum, currentSum);
+        }
+
+        return maxSum;
+    }
+
     public static void main(String[] args) {
 
         // removeElement Test case
@@ -165,5 +180,10 @@ public class Main {
         int k1 = 3;
         rotate(nums4, k1);
         System.out.println("Test case 1: Rotated array: " + Arrays.toString(nums4));
+
+        // maxSubarray Test case
+        int[] inputCase2 = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
+        int result2 = maxSubarray(inputCase2);
+        System.out.println("Example 1: Input: " + Arrays.toString(inputCase2) + "\nResult: " + result2);
     }
 }
