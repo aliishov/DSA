@@ -1,5 +1,7 @@
 package datastructure.linkedlist;
 
+import datastructure.doublylinkedlist.DoublyLinkedList;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -337,4 +339,21 @@ public class LinkedList {
 
     }
 
+    // Swap Noded in Pairs
+    public void swapPairs() {
+        if (head == null || head.next == null) return;
+
+        Node current = head;
+
+        while (current != null && current.next != null) {
+            swap(current, current.next);
+            current = current.next.next;
+        }
+    }
+
+    private void swap(Node a, Node b) {
+        int temp = a.value;
+        a.value = b.value;
+        b.value = temp;
+    }
 }
