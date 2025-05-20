@@ -1,7 +1,5 @@
 package datastructure.doublylinkedlist;
 
-import datastructure.linkedlist.LinkedList;
-
 public class DoublyLinkedList {
 
     class Node {
@@ -26,16 +24,16 @@ public class DoublyLinkedList {
 
     public void append(int value) {
         Node newNode = new Node(value);
-
-        if (length == 0) {
+        if (head == null) {
             head = newNode;
-            tail = newNode;
         } else {
-            tail.next = newNode;
-            newNode.prev = tail;
-            tail = newNode;
+            Node current = head;
+            while (current.next != null) {
+                current = current.next;
+            }
+            current.next = newNode;
+            newNode.prev = current;
         }
-        length++;
     }
 
     public void prepend(int value) {
@@ -162,6 +160,19 @@ public class DoublyLinkedList {
         length--;
 
         return temp;
+    }
+
+    public void printList() {
+        StringBuilder output = new StringBuilder();
+        Node temp = head;
+        while (temp != null) {
+            output.append(temp.value);
+            if (temp.next != null) {
+                output.append(" <-> ");
+            }
+            temp = temp.next;
+        }
+        System.out.println(output);
     }
 
     // Swap First & Last Nodes
@@ -309,5 +320,23 @@ public class DoublyLinkedList {
 
         Node temp = head;
         while (temp.next != null) temp = temp.next;
+    }
+
+    // Swap Nodes in Pairs
+    public void swapPairs() {
+        if (head == null || head.next == null) return;
+
+        Node current = head;
+
+        while (current != null && current.next != null) {
+            swap(current, current.next);
+            current = current.next.next;
+        }
+    }
+
+    private void swap(Node a, Node b) {
+        int temp = a.value;
+        a.value = b.value;
+        b.value = temp;
     }
 }
