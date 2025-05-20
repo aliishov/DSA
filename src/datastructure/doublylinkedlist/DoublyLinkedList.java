@@ -230,6 +230,7 @@ public class DoublyLinkedList {
         return true;
     }
 
+    // Partition List
     public void partitionList(int x) {
         if (head == null || head.next == null) return;
 
@@ -257,19 +258,16 @@ public class DoublyLinkedList {
             current = next;
         }
 
-        // Соединяем два списка
         if (greaterHead.next != null) {
             less.next = greaterHead.next;
             greaterHead.next.prev = less;
-            tail = greater;  // обновляем tail на конец правой части
+            tail = greater;
         } else {
-            tail = less; // если правая часть пуста
+            tail = less;
         }
 
-        head = lessHead.next; // новый head
+        head = lessHead.next;
         if (head != null) head.prev = null;
-
-        // Очистка фиктивных узлов
         lessHead.next = null;
         greaterHead.next = null;
     }
