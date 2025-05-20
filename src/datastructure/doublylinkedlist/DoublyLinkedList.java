@@ -229,4 +229,48 @@ public class DoublyLinkedList {
 
         return true;
     }
+
+    public void partitionList(int x) {
+        if (head == null || head.next == null) return;
+
+        Node lessHead = new Node(0);
+        Node greaterHead = new Node(0);
+        Node less = lessHead;
+        Node greater = greaterHead;
+        Node current = head;
+
+        while (current != null) {
+            Node next = current.next;
+            current.next = null;
+            current.prev = null;
+
+            if (current.value < x) {
+                less.next = current;
+                current.prev = less;
+                less = current;
+            } else {
+                greater.next = current;
+                current.prev = greater;
+                greater = current;
+            }
+
+            current = next;
+        }
+
+        // Соединяем два списка
+        if (greaterHead.next != null) {
+            less.next = greaterHead.next;
+            greaterHead.next.prev = less;
+            tail = greater;  // обновляем tail на конец правой части
+        } else {
+            tail = less; // если правая часть пуста
+        }
+
+        head = lessHead.next; // новый head
+        if (head != null) head.prev = null;
+
+        // Очистка фиктивных узлов
+        lessHead.next = null;
+        greaterHead.next = null;
+    }
 }
